@@ -35,7 +35,7 @@ export async function lambda(
     query,
     body: event.body, // TODO: handle event.isBase64Encoded
   });
-  // adding cache headers to response
+  // adding cache headers to response if not already set manually by the end user
   const routeRules = getRouteRulesForPath(url);
   if (routeRules.isr) {
     r.headers["Cache-Control"] = "public, max-age=0, must-revalidate";
