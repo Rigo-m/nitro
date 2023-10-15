@@ -1,6 +1,6 @@
 {
   "name": "@rigo-m/nitropack",
-  "version": "2.6.5",
+  "version": "2.6.6",
   "description": "Build and Deploy Universal JavaScript Servers",
   "repository": "unjs/nitro",
   "license": "MIT",

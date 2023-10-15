@@ -38,6 +38,10 @@ export async function lambda(
   const cookies = normalizeCookieHeader(String(r.headers["set-cookie"]));
   const awsBody = await normalizeLambdaOutgoingBody(r.body, r.headers);
 
+  console.log(
+    "returned headers",
+    normalizeLambdaOutgoingHeaders(r.headers, true)
+  );
   return {
     statusCode: r.status,
     headers: normalizeLambdaOutgoingHeaders(r.headers, true),
