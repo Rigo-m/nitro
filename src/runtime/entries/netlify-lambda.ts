@@ -57,6 +57,14 @@ export async function lambda(
     "returned headers",
     normalizeLambdaOutgoingHeaders(r.headers, true)
   );
+
+  // preserving ttl in response for compatibility in netlify-builder preset
+  const ttlBuilderPolicy = routeRules.isr
+    ? {
+      ttl: typeof routeRules.isr === "number" ? routeRules.isr : 0,
+    }
+    : {};
+
   return {
     statusCode: r.status,
     headers: normalizeLambdaOutgoingHeaders(r.headers, true),
@@ -65,5 +73,6 @@ export async function lambda(
     ...(cookies.length > 0 && {
       multiValueHeaders: { "set-cookie": cookies },
     }),
+    ...ttlBuilderPolicy,
   };
 }
